@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="../static/styles.css">
-    <title>Blogs</title>
+    <title>Blog Post</title>
 </head>
 <body>
     <div class="wrapper">
         <div class="top">
             <div class="title"><h1>My Blog</h1></div>
-               </div>
-            <div class="content">
+        </div>
+        <div class="content">
+            {% if posts and 0 <= num < posts|length %}
+                {% set post = posts[num] %}
                 <div class="card">
-                    {% for blog_post in posts:%}
-                        {% if (blog_post["id"]==2): %}
-                            <h1>{{blog_post["title"]}}</h1>
-                            <h2>{{blog_post["subtitle"]}}</h2>
-                            <p>{{blog_post["body"]}}</p>
-                            {%endif%}
-                        {%endfor%}
+                    <h1>{{ post["title"] }}</h1>
+                    <h2>{{ post["subtitle"] }}</h2>
+                    <p>{{ post["body"] }}</p>
+                </div>
+            {% else %}
+                <h1>Post not found.</h1>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
